@@ -5,7 +5,7 @@ from djangoProject.tasks.models import Task
 # Create your views here.
 
 def index(request):
-    return HttpResponse('YES!')
+    return render(request, 'index.html')
 
 # def list_tasks(request):
 #     all_tasks = Task.objects.all()
@@ -14,3 +14,7 @@ def index(request):
 
 def list_tasks_template(request):
     return render(request, 'tasks.html')
+
+def show_all_tasks(request):
+    all_tasks = Task.objects.all()
+    return (all_tasks)
