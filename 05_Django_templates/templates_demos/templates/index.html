@@ -1,0 +1,62 @@
+{% load filters %}
+{% load tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>
+    Original: {{ title }}: {{ value }}
+</h1>
+<h1>
+    Upped: {{ title|upper }}: {{ value }}
+</h1>
+<h1>
+    Lowered then cap first: {{ title|lower|capfirst }}: {{ value }}
+</h1>
+<h2>{{ 2|add:3|add:4 }}</h2>
+{{ student.get_info }}
+{{ student_info }}
+
+<h3>{{ now|date:'y/M/d' }}</h3>
+{#<div>{{ students|join:', ' }}</div>#}
+<div>
+    {% if students %} }
+        {{ students|join:', ' }}
+    {% else %}
+        No students
+    {% endif %}
+</div>
+<ul>
+    {% for student in students %}
+        <li>{{ student }}</li>
+    {% empty %}
+        <li>No students</li>
+    {% endfor %}
+</ul>
+<nav>
+    <a href='{% url 'index' %}'>Redirect to index</a>
+</nav>
+<nav>
+    <a href='{% url 'redirect to home' %}'>'{% url 'redirect to home' %}'</a>
+</nav>
+
+<div>
+    Original: {{ values }}
+</div>
+
+<div>
+    Odd: {{ values|odd }}
+</div>
+
+{% student_info student %}
+{#sndclk#}
+{% comment %}
+This is a
+multi-line comment
+{% endcomment %}
+</body>
+</html>
