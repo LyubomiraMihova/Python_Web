@@ -1,14 +1,9 @@
+{% extends 'base/base.html' %}
 {% load filters %}
 {% load tags %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>
+{% block page_content %}
+    <h1>
     Original: {{ title }}: {{ value }}
 </h1>
 <h1>
@@ -58,5 +53,17 @@
 This is a
 multi-line comment
 {% endcomment %}
-</body>
-</html>
+
+<nav>
+    <ul>
+        {% for url_name in url_names %}
+        <li>
+            <a href="{% url url_name %}">{{ url_name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+
+Tag Nav:
+{% app_nav 'index' 'redirect to home' 'about' %}
+{% endblock %}

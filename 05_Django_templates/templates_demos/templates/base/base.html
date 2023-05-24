@@ -1,0 +1,27 @@
+{% load static %}
+{% load tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'site.css' %}">
+</head>
+<body>
+
+HTML Nav:
+<nav>
+    <a href="{% url 'index' %}">Go to home</a>
+    <a href="{% url 'redirect to home' %}">Redirect to home</a>
+</nav>
+
+Tag Nav:
+{% app_nav 'index' 'redirect to home' 'about' %}
+{% app_nav 'index' 'redirect to home' 'redirect to home' 'redirect  to home' %}
+
+{% block page_content %}
+{% endblock %}
+
+</body>
+</html>

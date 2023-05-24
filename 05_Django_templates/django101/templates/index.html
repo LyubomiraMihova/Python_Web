@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Employee names: {{ first_name }} {{ last_name }}</h1>
+<h2>Department: {{ department }}</h2>
+<h3>Email Address: {{ email_address }}</h3>
+<div>{{ info.name }}</div>
+<span>{{ info.name|truncatechars:11 }}</span>
+<span>{{ info.name|truncatewords:1 }}</span>
+<div>{{ info.age }}</div>
+<div>{{ this_is_function }}</div>
+<div>{{ person.get_info }}</div>
+<div>{{ people|join:', ' }}</div>
+<div>{{ people|length }}</div>
+<div>{{ sum }}</div>
+<div>{{ sum|floatformat:3 }}</div>
+<div>{{ sum|floatformat:2 }}</div>
+
+</body>
+</html>
