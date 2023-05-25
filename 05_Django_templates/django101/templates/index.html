@@ -1,3 +1,5 @@
+{% load my_filter %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +22,47 @@
 <div>{{ sum }}</div>
 <div>{{ sum|floatformat:3 }}</div>
 <div>{{ sum|floatformat:2 }}</div>
+
+<div>
+    {% if employees_list %}
+        Number of employees: {{ employees_list|length }}
+    {% elif selected_candidates %}
+        Number of candidates {{ selected_candidates|length }}
+    {% else %}
+        No employees or candidates!
+    {% endif %}
+</div>
+
+<div>
+    {% if employees_list and selected_candidates %}
+        Not empty!
+    {% elif employees_list or selected_candidates %}
+        At least one is not empty!
+    {% else %}
+        Empty!
+    {% endif %}
+</div>
+
+<div>
+    {% if employees_list|length < 10 %}
+        Not enough employees
+    {% elif employees_list > 10 %}
+        Enough employees
+    {% endif %}
+</div>
+
+<div>
+    {% for employee in employees %}
+        <li>{{ employee.first_name }}</li>
+    {% empty %}
+        <li>No employees in this list.</li>
+    {% endfor %}
+</div>
+
+{#Not working!#}
+{#<ul>{% url 'redirect to home' department.id %}</ul>#}
+
+<div>Odd numbers: {{ nums|odd }}</div>
 
 </body>
 </html>

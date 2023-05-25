@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 # Create your views here.
@@ -14,6 +14,12 @@ def index(request):
         'person': Person('Lyubomira', 30),
         'people': ['Maria', 'Mark', 'Gena', 'Travis'],
         'sum': 26.77633892,
+        'employees_list': ['bsj', 'HJshi', 'jsjsa'],
+        # 'employees_list': [],
+        'selected_candidates': ['Jgu', 'Jugk', 'uhuu', 'Hgsbw', 'Shbd'],
+        # 'selected_candidates': [],
+        'employees': [{'first_name': 'Lyubomira'}, {'first_name': 'Milana'}, {'first_name': 'Milkana'}],
+        'nums': [1, 3, 8, 5, 2, 78],
     }
 
     return render(request, 'index.html', context)
@@ -30,3 +36,14 @@ class Person:
 
     def get_info(self):
         return f'This is {self.name} and she/he is {self.age} years old.'
+
+
+def view_one(request):
+    return render(request, 'page1.html')
+
+
+def view_two(request, id):
+    return render(request, 'page2.html', {'id': id})
+
+
+
