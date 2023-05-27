@@ -1,4 +1,7 @@
+{% extends 'base.html' %}
 {% load my_filter %}
+{% load tags %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,6 +66,26 @@
 {#<ul>{% url 'redirect to home' department.id %}</ul>#}
 
 <div>Odd numbers: {{ nums|odd }}</div>
+
+<section>
+    <ul>
+        {% for student in students_obj %}
+            <li>{% show_student_info student %}</li>
+        {% endfor %}
+    </ul>
+</section>
+{{ block.super }}
+
+{% block title %}My amazing block!{% endblock %}
+
+{% block content %}
+    {% include 'departments/includes/nav-bar.html' %}
+    {% for entry in blog_entries %}
+        <h2>{{ entry.title }}</h2>
+        <p>{{ entry.body }}</p>
+    {% endfor %}
+{% endblock %}
+
 
 </body>
 </html>

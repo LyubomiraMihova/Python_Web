@@ -20,6 +20,16 @@ def index(request):
         # 'selected_candidates': [],
         'employees': [{'first_name': 'Lyubomira'}, {'first_name': 'Milana'}, {'first_name': 'Milkana'}],
         'nums': [1, 3, 8, 5, 2, 78],
+        'students_obj': [
+            Person('Lili', 32),
+            Person('Loren', 45),
+            Person('Liliq', 23),
+        ],
+        'blog_entries': [
+            {'title': 'Entry one', 'body': 'This is my first entry.'},
+            {'title': 'Entry two', 'body': 'This is my second entry.'},
+            {'title': 'Entry three', 'body': 'This is my third entry.'},
+        ]
     }
 
     return render(request, 'index.html', context)
