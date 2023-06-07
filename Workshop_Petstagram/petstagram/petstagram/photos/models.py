@@ -2,6 +2,7 @@ from django.core.validators import MinLengthValidator
 from django.db import models
 
 from petstagram.pets.models import Pet
+from petstagram.photos.validators import image_size_validator
 
 
 # Create your models here.
@@ -18,7 +19,12 @@ from petstagram.pets.models import Pet
 
 
 class Photo(models.Model):
-    pet_image = models.ImageField(blank=False, null=False)
+    pet_image = models.ImageField(
+        blank=False,
+        null=False,
+        validators=(image_size_validator,),
+        upload_to='mediafiles/photos'
+    )
     # optional
     description = models.TextField(
         max_length=300,
@@ -26,8 +32,11 @@ class Photo(models.Model):
         blank=True,
         null=True
     )
-    location = models.CharField(max_length=30)
+    location = models.CharField(max_length=30, blank=True, null=True)
     tagged_pets = models.ManyToManyField(Pet, blank=True)
     date_of_publication = models.DateField(
         auto_now=True,
     )
+
+    def __str__(self):
+        return f'{self.pk} - {self.pet_image}'

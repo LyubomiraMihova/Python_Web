@@ -22,3 +22,6 @@ class Pet(models.Model):
         if not self.slug:
             self.slug = slugify(f'{self.name}--{self.pk}')
         return super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.pk} - {self.name}'
