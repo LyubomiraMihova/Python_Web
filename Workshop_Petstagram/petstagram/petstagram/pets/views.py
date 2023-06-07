@@ -8,8 +8,8 @@ def pet_add(request):
     return render(request, 'pets/pet-add-page.html')
 
 
-def pet_details(request, pet_name):
-    pet = Pet.objects.filter(slug=pet_name)
+def pet_details(request, username, pet_name):
+    pet = Pet.objects.filter(slug=pet_name).first()
     all_photos = pet.photo_set.all()
 
     context = {
