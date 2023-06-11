@@ -5,10 +5,19 @@
     <title>Title</title>
 </head>
 <body>
-<form action="{% url 'index' %}" method="get">
+<h1>
+    {% if name %}
+        Hello, {{ name }} nice to see you!
+    {% else %}
+        Please, enter your name!
+    {% endif %}
+</h1>
+
+<form action="{% url 'index' %}" method="post">
     {{ form }}
+    {% csrf_token %}
     <button>Submit</button>
-{#    <input type="submit">#}
+    {#    <input type="submit">#}
 </form>
 </body>
 </html>
