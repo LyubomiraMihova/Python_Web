@@ -1,11 +1,11 @@
 from django import forms
 from django.db import models
 
-
+from forms_demos_part_2.web.models import ToDo
 from forms_demos_part_2.web.validators import validate_text, ValueInRangeValidator
 
 
-class ToDoForm(forms.Form):
+class TodoForm(forms.Form):
     text = forms.CharField(
         validators=(
             validate_text,
@@ -24,27 +24,9 @@ class ToDoForm(forms.Form):
     )
 
 
-class ToDo(models.Model):
-    MAX_LEN_TEXT = 25
-    text = models.CharField(
-        max_length=MAX_LEN_TEXT,
-        validators=(
-            validate_text,
-        ),
-        null=False,
-        blank=False,
-    )
+class TodoCreateForm(forms.ModelForm):
+    class Meta:
+        model = ToDo
+        fields = '__all__'
 
-    priority = models.IntegerField(
-        validators=(
-            ValueInRangeValidator(1, 10)
-        ),
-        null=False,
-        blank=False,
-    )
 
-    is_done = models.BooleanField(
-        default=False,
-        null=False,
-        blank=False,
-    )
