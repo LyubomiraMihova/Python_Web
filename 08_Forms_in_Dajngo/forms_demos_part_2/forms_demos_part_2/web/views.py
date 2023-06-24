@@ -11,7 +11,6 @@ def index(request):
     if request.method == 'GET':
         form = ToDo()
     else:
-
         form = ToDo(request.POST)
 
         if form.is_valid():

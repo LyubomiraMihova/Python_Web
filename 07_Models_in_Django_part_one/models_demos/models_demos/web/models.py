@@ -8,11 +8,26 @@ class Department(models.Model):
         unique=True,
     )
 
+    def __str__(self):
+        return f'{self.pk} {self.name}'
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=30)
+    code_name = models.CharField(
+        max_length=10,
+        unique=True
+    )
+    deadline = models.DateField()
+
 
 # Create your models here.
 
 class Employee(models.Model):
-    first_name = models.CharField(max_length=20)
+    first_name = models.CharField(
+        max_length=30,
+    )
+    years_of_experience = models.PositiveIntegerField()
     last_name = models.CharField(max_length=20)
     email_address = models.EmailField()
     works_full_time = models.BooleanField()
@@ -30,10 +45,12 @@ class Employee(models.Model):
         auto_now_add=True
     )
 
-    # department = models.ForeignKey(
-    #     Department,
-    #     on_delete=models.CASCADE
-    # )
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.CASCADE
+    )
+
+    projects = models.ManyToManyField(Project)
 
     @property
     def fullname(self):
@@ -41,3 +58,30 @@ class Employee(models.Model):
 
     def __str__(self):
         return f'Id: {self.pk}; Name: {self.fullname}'
+
+
+class NullBlankDemo(models.Model):
+    blank = models.IntegerField(
+        blank=True,
+        null=False,
+    )
+    null = models.IntegerField(
+        blank=False,
+        null=True,
+    )
+    blank_null = models.IntegerField(
+        blank=True,
+        null=True,
+    )
+    default = models.IntegerField(
+        blank=False,
+        null=False,
+    )
+
+
+class AccessCard(models.Model):
+    employee = models.OneToOneField(
+        Employee,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )

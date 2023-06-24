@@ -27,6 +27,6 @@ class TodoForm(forms.Form):
 class TodoCreateForm(forms.ModelForm):
     class Meta:
         model = ToDo
-        fields = '__all__'
+        fields = ('')
 
 

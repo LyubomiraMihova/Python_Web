@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block navbar_content %}
+    <!-- If there is a user profile -->
+    <div class="user">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'create fruit' %}">Add Fruit</a>
+        <a href="{% url 'details profile' %}">Profile</a>
+    </div>
+{% endblock %}
+
+{% block main_content %}
+    <section id="edit">
+
+        <div class="form">
+            <h1>Are you sure you want to delete your profile?</h1>
+
+            <!-- Delete Profile Form -->
+            <form id='delete' class="register-form">
+                <!-- Confirm Button -->
+                <button type="submit">Yes</button>
+
+            </form>
+            <!-- End Delete Profile Form -->
+        </div>
+
+    </section>
+{% endblock %}
