@@ -20,3 +20,15 @@ def index(request):
 #     employee = employees(Employee, pk=pk)
 #     employee.delete()
 #     return redirect('index')
+
+
+def next_index(request):
+    employees = Employee.objects.filter(department_id=1) \
+        .order_by('last_name', 'first_name')
+    department = Department.objects.get(pk=1)
+    context = {
+        'employees': employees,
+        'department': department,
+    }
+
+    return render(request, 'web/next-index.html', context)

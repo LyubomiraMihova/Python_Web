@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    {% for employee in employees %}
+        <li>
+            <div>
+                {{ employee.fullname }}
+            </div>
+            <div>
+                {{ employee.department.name }}
+            </div>
+            <div>
+                Experience: {{ employee.years_of_experience }}
+                Date birth: {{ employee.birth_date }}
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

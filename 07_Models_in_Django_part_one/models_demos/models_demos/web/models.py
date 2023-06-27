@@ -27,8 +27,8 @@ class Employee(models.Model):
     first_name = models.CharField(
         max_length=30,
     )
-    years_of_experience = models.PositiveIntegerField()
     last_name = models.CharField(max_length=20)
+    years_of_experience = models.PositiveIntegerField()
     email_address = models.EmailField()
     works_full_time = models.BooleanField()
     # job_level = models.CharField(
