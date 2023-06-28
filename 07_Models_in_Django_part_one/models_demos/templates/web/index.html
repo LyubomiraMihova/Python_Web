@@ -18,7 +18,7 @@
                         {{ employee.email_address }}
                     </div>
                 </li>
-{#                <a href="{% url 'delete employee' pk=employee.pk %}">Delete</a>#}
+                <a href="{% url 'delete employee' pk=employee.pk %}">Delete</a>
             {% endfor %}
         </ul>
     </div>

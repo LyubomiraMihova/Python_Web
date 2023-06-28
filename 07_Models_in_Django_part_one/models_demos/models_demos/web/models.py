@@ -1,7 +1,22 @@
 from django.db import models
+from django.urls import reverse
 
 
-class Department(models.Model):
+class AuditInfoMixin(models.Model):
+    # No table will be created in teh DB
+    # Can be inherit in other models
+    class Meta:
+        abstract = True
+
+    created_on = models.DateTimeField(
+        auto_now_add=True
+    )
+    updated_on = models.DateTimeField(
+        auto_now=True
+    )
+
+
+class Department(AuditInfoMixin, models.Model):
     name = models.CharField(max_length=25)
     age = models.IntegerField()
     slug = models.SlugField(
@@ -20,10 +35,20 @@ class Project(models.Model):
     )
     deadline = models.DateField()
 
+    def get_absolute_url(self):
+        url = reverse('delete employee', kwargs={
+            'pk': self.pk,
+        })
+        return url
+
 
 # Create your models here.
 
 class Employee(models.Model):
+    class Meta:
+        ordering = ('-years_of_experience',)
+        verbose_name_plural = 'Employees'
+
     first_name = models.CharField(
         max_length=30,
     )
@@ -40,10 +65,6 @@ class Employee(models.Model):
     # )
     photo = models.URLField()
     birth_date = models.DateField()
-
-    created_on = models.DateTimeField(
-        auto_now_add=True
-    )
 
     department = models.ForeignKey(
         Department,
