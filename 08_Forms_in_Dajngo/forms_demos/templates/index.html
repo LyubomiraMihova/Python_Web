@@ -1,33 +1,51 @@
-{% extends 'base.html' %}
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block title %}#}
+{#{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#    <h2>#}
+{#        {% if name %}#}
+{#            Hello, {{ name }} nice to see you!#}
+{#        {% else %}#}
+{#            Please, enter your name!#}
+{#        {% endif %}#}
+{#    </h2>#}
+{#    <h3>Default forms</h3>#}
+{#    <form action="{% url 'index' %}" method="post">#}
+{#        {{ form }}#}
+{#        {% csrf_token %}#}
+{#        <button>Submit</button>#}
+{#    <input type="submit">#}
+{#    </form>#}
+{#    <h2>Manually form</h2>#}
+{#    <form action="{% url 'index' %}" method="post">#}
+{#        {% for field in form %}#}
+{#            <label for="{{ field.id_for_label }}">#}
+{#                <strong>{{ field.label }}</strong>#}
+{#            </label>#}
+{#            {{ field }}#}
+{#        {% endfor %}#}
+{#        {% csrf_token %}#}
+{#        <button>Submit</button>#}
+{#    <input type="submit">#}
+{#    </form>#}
+{#{% endblock %}#}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="">
+    {{ form }}
+    {% csrf_token %}
+    <button>Send form</button>
+</form>
 
-{% block title %}
-{% endblock %}
-
-{% block content %}
-    <h2>
-        {% if name %}
-            Hello, {{ name }} nice to see you!
-        {% else %}
-            Please, enter your name!
-        {% endif %}
-    </h2>
-    <h3>Default forms</h3>
-    <form action="{% url 'index' %}" method="post">
-        {{ form }}
-        {% csrf_token %}
-        <button>Submit</button>
-        {#    <input type="submit">#}
-    </form>
-    <h2>Manually form</h2>
-    <form action="{% url 'index' %}" method="post">
-        {% for field in form %}
-            <label for="{{ field.id_for_label }}">
-                <strong>{{ field.label }}</strong>
-            </label>
-            {{ field }}
-        {% endfor %}
-        {% csrf_token %}
-        <button>Submit</button>
-        {#    <input type="submit">#}
-    </form>
-{% endblock %}
+</body>
+</html>
