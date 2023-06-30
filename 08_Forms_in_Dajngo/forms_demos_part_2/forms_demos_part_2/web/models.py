@@ -3,9 +3,7 @@ from django.db import models
 from forms_demos_part_2.web.validators import ValueInRangeValidator, validate_text
 
 
-# Create your models here.
-
-class ToDo(models.Model):
+class Todo(models.Model):
     MAX_LEN_TEXT = 25
     text = models.CharField(
         max_length=MAX_LEN_TEXT,
@@ -18,7 +16,7 @@ class ToDo(models.Model):
 
     priority = models.IntegerField(
         validators=(
-            ValueInRangeValidator(1, 10)
+            ValueInRangeValidator(1, 10),
         ),
         null=False,
         blank=False,
@@ -29,3 +27,18 @@ class ToDo(models.Model):
         null=False,
         blank=False,
     )
+
+
+class Person(models.Model):
+    MAX_LEN_NAME = 20
+    name = models.CharField(
+        max_length=MAX_LEN_NAME,
+    )
+    profile_image = models.ImageField(
+        upload_to='people',
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self):
+        return self.name
