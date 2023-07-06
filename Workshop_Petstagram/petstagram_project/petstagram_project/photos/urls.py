@@ -1,11 +1,10 @@
 from django.urls import path, include
-
-from petstagram_project.photos.views import add_photo, details_photo, edit_photo
+from .views import photo_add, photo_details, photo_edit
 
 urlpatterns = [
-    path('add/', add_photo, name='add photo'),
+    path('add/', photo_add, name='photo add'),
     path('<int:pk>/', include([
-        path('', details_photo, name='details photo'),
-        path('edit/', edit_photo, name='edit photo'),
+        path('', photo_details, name='photo details'),
+        path('edit/', photo_edit, name='photo edit'),
     ])),
 ]

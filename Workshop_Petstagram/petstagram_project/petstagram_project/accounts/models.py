@@ -1,3 +1,68 @@
-from django.db import models
+import xml.dom
+from enum import Enum
 
-# Create your models here.
+from django.db import models
+from django.core import validators
+from django.contrib.auth import models as auth_models
+
+
+def validate_only_alphabetical(value):
+    pass
+
+
+class ChoicesMixin:
+    @classmethod
+    def choices(cls):
+        return [(choice.value, choice.name) for choice in cls]
+
+
+class ChoicesStringsMixin(ChoicesMixin):
+    @classmethod
+    def max_length(cls):
+        return max(len(x.value) for x in cls)
+
+
+class Gender(ChoicesStringsMixin, Enum):
+    MALE = 'male'
+    FEMALE = 'female'
+    DO_NOT_SHOW = 'do not show'
+
+
+#
+# class Another(Enum, ChoicesMixin):
+#     Choice1 = 1
+#     Choice2 = 2
+
+
+class PetstagramUser(auth_models.AbstractUser):
+    FIRST_NAME_MIN_LENGTH = 2
+    FIRST_NAME_MAX_LENGTH = 30
+    LAST_NAME_MIN_LENGTH = 2
+    LAST_NAME_MAX_LENGTH = 30
+
+    first_name = models.CharField(
+        max_length=FIRST_NAME_MAX_LENGTH,
+        validators=(
+            validators.MinLengthValidator(FIRST_NAME_MIN_LENGTH),
+        ))
+
+    last_name = models.CharField(
+        max_length=LAST_NAME_MAX_LENGTH,
+        validators=(
+            validators.MinLengthValidator(LAST_NAME_MIN_LENGTH),
+            validate_only_alphabetical,
+        ))
+
+    email = models.EmailField(
+        unique=True,
+    )
+
+    gender = models.CharField(
+        choices=Gender.choices(),
+        max_length=Gender.max_length(),
+    )
+
+    profile_picture = models.URLField(
+        null=True,
+        blank=True,
+    )
