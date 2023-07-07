@@ -1,6 +1,6 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import slugify
-
 
 # Create your models here.
 #
@@ -11,11 +11,19 @@ from django.template.defaultfilters import slugify
 # • Date of Birth - pet's day, month, and year of birth
 # Slug - a slug automatically generated using the pet's name and the pet's id, separated by a "-" (dash)
 
+UserModel = get_user_model()
+
+
 class Pet(models.Model):
     name = models.CharField(max_length=30)
     personal_pet_photo = models.URLField()
     date_of_birth = models.DateField(blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
+
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.DO_NOTHING,
+    )
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

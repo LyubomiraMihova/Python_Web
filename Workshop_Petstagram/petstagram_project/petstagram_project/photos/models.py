@@ -1,9 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.db import models
 
 from petstagram_project.pets.models import Pet
 from petstagram_project.photos.validators import image_size_validator
-
 
 # Create your models here.
 
@@ -16,6 +16,8 @@ from petstagram_project.photos.validators import image_size_validator
 # • Tagged Pets - the user can tag none, one, or many of all pets. There is no limit on the number of tagged pets
 # There should be created one more field that will be automatically generated:
 # • Date of publication - when a picture is added or edited, the date of publication is automatically generated
+
+UserModel = get_user_model()
 
 
 class Photo(models.Model):
@@ -36,6 +38,11 @@ class Photo(models.Model):
     tagged_pets = models.ManyToManyField(Pet, blank=True)
     date_of_publication = models.DateField(
         auto_now=True,
+    )
+
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.DO_NOTHING,
     )
 
     def __str__(self):

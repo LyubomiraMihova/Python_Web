@@ -22,5 +22,5 @@ urlpatterns = [
     path('', include('petstagram_project.common.urls')),
     path('accounts/', include('petstagram_project.accounts.urls')),
     path('pets/', include('petstagram_project.pets.urls')),
-    path('photos/', include('petstagram_project.accounts.urls')),
+    path('photos/', include('petstagram_project.photos.urls')),
 ]

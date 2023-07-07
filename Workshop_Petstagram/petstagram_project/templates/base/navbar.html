@@ -31,7 +31,7 @@
                         {% if request.user.is_authenticated %}
                             <!-- Link to Profile Page -->
                             <li class="nav-item">
-                                <a href="{% url 'pet add' %}"><i>Profile</i></a>
+                                <a href="{% url 'details user' pk=request.user.pk %}"><i>{{ request.user.username }}</i></a>
                             </li>
                             <!-- Logout of Profile -->
                             <li class="nav-item">
