@@ -1,13 +1,31 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from .forms import PetAddForm
 from .models import Pet
 
 
 # Create your views here.
 
+
 @login_required
 def pet_add(request):
-    return render(request, 'pets/pet-add-page.html')
+    form = PetAddForm()
+
+    if request.method == 'POST':
+        form = PetAddForm(request.POST)
+        if form.is_valid():
+            pet = form.save(commit=False)
+            pet.user = request.user
+            pet.save()
+
+            return redirect('details user', pk=1)
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'pets/pet-add-page.html', context=context)
 
 
 @login_required

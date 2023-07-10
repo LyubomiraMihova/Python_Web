@@ -27,7 +27,7 @@ class Photo(models.Model):
     #     validators=(image_size_validator,),
     #     upload_to='mediafiles/photos'
     # )
-    # optional
+
     description = models.TextField(
         max_length=300,
         validators=(MinLengthValidator(10),),

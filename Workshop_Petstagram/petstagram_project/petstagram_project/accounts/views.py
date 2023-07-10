@@ -1,4 +1,3 @@
-
 from django.shortcuts import render
 from django.templatetags.static import static
 from django.urls import reverse_lazy
@@ -52,14 +51,17 @@ class ProfileDetailsView(views.DetailView):
     model = UserModel
     # To work provide either 'model', 'queryset' or 'get_queryset'
 
-    def get_context_data(self, **kwargs):
-        profile_image = static('images/person.png')
+    profile_image = static('images/person.png')
 
+    def get_profile_image(self):
         if self.object.profile_picture is not None:
-            profile_image = self.object.profile_picture
+            return self.object.profile_picture
+        return self.profile_image
 
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['profile_image'] = profile_image
+        context['profile_image'] = self.get_profile_image()
+        context['pets'] = self.request.user.pet_set.all()
 
         return context
 
