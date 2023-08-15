@@ -1,22 +1,24 @@
-"""
-URL configuration for car_collection_app project.
+from django.urls import path, include
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path
+from car_collection_app.web.views import index, \
+    catalogue, car_create, car_details, car_edit, car_delete, \
+    profile_create, profile_details, profile_edit, profile_delete
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', index, name='index'),
+    path('catalogue/', catalogue, name='catalogue'),
+    path('car/', include([
+        path('create/', car_create, name='car create'),
+        path('<int:pk>/', include([
+            path('details/', car_details, name='car details'),
+            path('edit/', car_edit, name='car edit'),
+            path('delete/', car_delete, name='car delete'),
+        ])),
+    ])),
+    path('profile/', include([
+        path('create/', profile_create, name='profile create'),
+        path('details/', profile_details, name='profile details'),
+        path('edit/', profile_edit, name='profile edit'),
+        path('delete/', profile_delete, name='profile delete'),
+    ])),
 ]
