@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+
+{% block main_content %}
+
+    <section id="login">
+        <div class="form">
+
+            <h2>Create Profile</h2>
+
+            <form class="login-form" method="post" action="{% url 'create profile page' %}">
+                {{ form }}
+                <input class="btn submit" type="submit" value="Submit">
+                {% csrf_token %}
+            </form>
+
+        </div>
+    </section>
+{% endblock %}

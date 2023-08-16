@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+
+{% block main_content %}
+
+    <section id="create">
+        <div class="form">
+            <h2>Create Event</h2>
+
+            <form class="create-form" method="post" action="{% url 'create event page' %}">
+                {{ form }}
+                <input class="btn" type="submit" value="Create">
+                {% csrf_token %}
+            </form>
+
+        </div>
+    </section>
+{% endblock %}
+

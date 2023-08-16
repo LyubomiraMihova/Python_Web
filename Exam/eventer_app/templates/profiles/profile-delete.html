@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+
+{% block main_content %}
+
+    <section id="delete-page">
+        <div class="form" id="delete-profile">
+
+            <form id='delete' method="post" action="{% url 'delete profile page' %}">
+                <h2>Are you sure you want to delete your profile?</h2>
+                {{ form }}
+                <input class="btn submit" type="submit" value="Confirm">
+                {% csrf_token %}
+            </form>
+
+        </div>
+    </section>
+
+{% endblock %}

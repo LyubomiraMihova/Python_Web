@@ -1,0 +1,17 @@
+{% extends 'shared/base.html' %}
+
+{% block main_content %}
+
+    <section id="edit">
+        <div class="form">
+            <h2>Edit Event</h2>
+
+            <form class="edit-form" method="post" action="{% url 'edit event page' event.pk %}">
+                {{ form }}
+                <input class="btn" type="submit" value="Edit">
+                {% csrf_token %}
+            </form>
+
+        </div>
+    </section>
+{% endblock %}
